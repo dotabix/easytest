@@ -1,0 +1,16 @@
+version: "3"
+services:
+  bruh:
+    container_name: "bruh"
+    build:
+      context: .
+    volumes:
+      - bruh:/data
+    stop_signal: SIGINT
+    restart: unless-stopped
+    command: "python3 app.py"
+    ports:
+      - "${EXTERNAL_PORT:-4200}:4200"
+
+volumes:
+  bruh:
