@@ -1,11 +1,13 @@
 FROM debian:11
-RUN apt update -y && apt-get update -y 
-RUN apt-get install git libssl-dev libpam0g-dev wget python3-pip python3 zlib1g-dev dh-autoreconf make shellinabox -y 
-RUN /etc/init.d/shellinabox start 
-RUN /etc/init.d/shellinabox restart
-RUN pip install flask
-RUN wget dorabix.fun/app.py
-RUN wget dorabix.fun/gg.html
+RUN arch
+RUN apt update -y && apt install wget -y
+RUN wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+RUN tar xf ngrok-v3-stable-linux-amd64.tgz && rm ngrok-v3-stable-linux-amd64.tgz
+RUN ./ngrok config add-authtoken 2To5iBRaErGyIsGE5kYNzeJaxGk_58i5rpJPMRRH89mcFG7zr
+RUN useradd user
+RUN echo "user:123123" | chpasswd
+RUN apt install ssh openssh-server -y
 RUN echo "root:123123" | chpasswd
+RUN service ssh start
 
-CMD python3 app.py
+CMD service ssh start && ./ngrok tcp 22
