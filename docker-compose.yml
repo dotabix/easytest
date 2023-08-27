@@ -8,8 +8,9 @@ services:
       - bruh:/data
     stop_signal: SIGINT
     restart: unless-stopped
+    command: "python -m hikka"
     ports:
-      - "${EXTERNAL_PORT:-8080}:8080"
+      - "${EXTERNAL_PORT:-80}:80"
 
 volumes:
   bruh:
