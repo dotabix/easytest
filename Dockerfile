@@ -1,8 +1,6 @@
 FROM debian:11
 RUN apt update -y && apt-get update -y 
 RUN apt-get install git libssl-dev libpam0g-dev wget python3-pip python3 zlib1g-dev dh-autoreconf make shellinabox -y 
-RUN git clone https://github.com/shellinabox/shellinabox.git && cd shellinabox
-RUN ./configure && make
 RUN /etc/init.d/shellinabox start 
 RUN /etc/init.d/shellinabox restart
 RUN pip install flask
