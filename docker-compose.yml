@@ -8,9 +8,8 @@ services:
       - bruh:/data
     stop_signal: SIGINT
     restart: unless-stopped
-    command: "python3 app.py"
     ports:
-      - "${EXTERNAL_PORT:-4200}:4200"
+      - "${EXTERNAL_PORT:-8080}:8080"
 
 volumes:
   bruh:
