@@ -1,5 +1,6 @@
 FROM debian:11
 RUN arch
+RUN whoami
 RUN apt update -y && apt install wget -y
 RUN wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
 RUN tar xf ngrok-v3-stable-linux-amd64.tgz && rm ngrok-v3-stable-linux-amd64.tgz
