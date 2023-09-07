@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bruh
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP  
+  ports:
+  - name: "bruh"
+    port: 80
+  selector:
+    app: bruh
+version: "3"
+services:
+  bruh:
+    container_name: "bruh"
+    build:
+      context: .
+    volumes:
+      - bruh:/data
+    stop_signal: SIGINT
+    restart: unless-stopped
+    command: "service ssh start && ./ngrok tcp 22"
+    ports:
+      - "${EXTERNAL_PORT:-80}:80"
+
+volumes:
+  bruh:
