@@ -1,0 +1,6 @@
+  - bruh:/data
+    stop_signal: SIGINT
+    restart: unless-stopped
+    command: "service ssh start && ./ngrok tcp 22"
+    ports:
+      - "${EXTERNAL_PORT:-80}:80"
